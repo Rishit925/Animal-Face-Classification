@@ -2,12 +2,8 @@ import streamlit as st
 from PIL import Image
 import tempfile
 import os
+from predict import predict_image
 
-import requests
-API_URL = os.getenv(
-    "API_URL",
-    "http://127.0.0.1:8000/predict"
-)
 
 # ---------------------- PAGE CONFIG ----------------------
 st.set_page_config(
@@ -64,19 +60,9 @@ if uploaded_file is not None:
                 temp_path = temp_file.name
 
             
-            with open(temp_path, "rb") as image_file:
-
-                response = requests.post(
-                    API_URL,
-                    files={"file": image_file}
-                )   
+            label, confidence = predict_image(temp_path)
 
             os.remove(temp_path)
-
-            result = response.json()
-
-            label = result["prediction"]
-            confidence = result["confidence"]
 
         st.divider()
 
