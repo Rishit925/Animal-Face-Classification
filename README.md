@@ -1,108 +1,155 @@
 # 🐾 Animal Face Classifier
 
-An end-to-end Deep Learning application that classifies animal face images into predefined categories using a Convolutional Neural Network (CNN) built with PyTorch. The project features a Streamlit frontend, a FastAPI backend, and Docker support for containerized deployment.
+An end-to-end Deep Learning project that classifies animal face images into one of three categories: **Cat**, **Dog**, or **Wild** using a Convolutional Neural Network (CNN) built with **PyTorch**.
+
+The project demonstrates a complete machine learning workflow—from model training and inference to API development, containerization, and deployment.
 
 ---
 
-## 📌 Features
+## 🚀 Live Demo
 
-- Train a Convolutional Neural Network (CNN) for animal face classification
-- Upload an image and receive instant predictions
-- Displays prediction confidence score
+**Streamlit Application**
+
+https://animal-face-classification-gk5cdwpodddicjnurxeden.streamlit.app/
+
+---
+
+## ✨ Features
+
+- Classifies animal face images into:
+  - 🐱 Cat
+  - 🐶 Dog
+  - 🦊 Wild
+- Custom CNN built using PyTorch
+- Real-time image classification
+- Confidence score for every prediction
 - Interactive Streamlit web interface
-- FastAPI REST API for model inference
-- Dockerized application with Docker Compose
+- FastAPI REST API backend
+- Docker & Docker Compose support
 - Modular and production-ready project structure
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Machine Learning
-- Python
+### Deep Learning
+
 - PyTorch
 - TorchVision
 - NumPy
-- Pandas
 - Scikit-learn
 
 ### Backend
+
 - FastAPI
 - Uvicorn
 
 ### Frontend
+
 - Streamlit
 
-### Deployment & Tools
+### Deployment
+
+- Streamlit Community Cloud
 - Docker
 - Docker Compose
-- Git
-- GitHub
+
+### Utilities
+
+- Pillow
+- Joblib
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-animal-face-classifier/
+Animal-Face-Classification/
 │
-├── app.py                  # Streamlit frontend
-├── api.py                  # FastAPI backend
-├── predict.py              # Model inference logic
-├── model.py                # CNN architecture
+├── app.py
+├── api.py
+├── model.py
+├── predict.py
 │
 ├── models/
 │   ├── best_model.pth
 │   └── label_encoder.pkl
 │
-├── sample_images/
 ├── notebooks/
 │
-├── requirements.txt
+├── sample_images/
+│
+├── screenshots/
+│   ├── home.png
+│   ├── prediction.png
+│   ├── swagger-ui-1.png
+│   └── swagger-ui-2.png
+│
 ├── Dockerfile
 ├── docker-compose.yml
-├── .dockerignore
-└── README.md
+├── requirements.txt
+├── README.md
 ```
 
 ---
 
-## 🧠 Model Architecture
+## 🧠 Model Pipeline
 
-The Convolutional Neural Network consists of:
-
-- 3 Convolutional Layers
-- ReLU Activation
-- Max Pooling Layers
-- Flatten Layer
-- Fully Connected Layer
-- Output Layer
-
-**Input Image Size**
-
-```
-128 × 128 × 3
-```
+1. Load the trained CNN model.
+2. Preprocess the uploaded image.
+3. Perform model inference.
+4. Calculate confidence score.
+5. Display the predicted class and confidence.
 
 ---
 
-## 🚀 Installation
+## 📸 Screenshots
 
-### Clone the Repository
+### Home Page
+
+![Home](screenshots/home.png)
+
+---
+
+### Prediction Result
+
+![Prediction](screenshots/prediction.png)
+
+---
+
+### FastAPI Swagger UI
+
+Interactive API documentation.
+
+![Swagger UI](screenshots/swagger-ui-1.png)
+
+---
+
+### API Prediction Example
+
+Prediction through the FastAPI endpoint.
+
+![Swagger Prediction](screenshots/swagger-ui-2.png)
+
+---
+
+## 💻 Running Locally
+
+### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/animal-face-classifier.git
+git clone https://github.com/<YOUR_USERNAME>/Animal-Face-Classification.git
 
-cd animal-face-classifier
+cd Animal-Face-Classification
 ```
 
-### Create a Virtual Environment
+### Create Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-### Activate the Virtual Environment
+### Activate Environment
 
 **Windows**
 
@@ -110,7 +157,7 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-**Linux / macOS**
+**Linux/macOS**
 
 ```bash
 source .venv/bin/activate
@@ -124,140 +171,78 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Run Locally
-
-### Start FastAPI
-
-```bash
-uvicorn api:app --reload
-```
-
-### Start Streamlit
+## ▶️ Run Streamlit
 
 ```bash
 streamlit run app.py
 ```
 
-### Open in Browser
-
-**Streamlit**
-
-```
-http://localhost:8501
-```
-
-**FastAPI Swagger Documentation**
-
-```
-http://localhost:8000/docs
-```
-
 ---
 
-## 🐳 Docker Deployment
-
-Build the Docker images:
+## 🌐 Run FastAPI
 
 ```bash
-docker compose build
+uvicorn api:app --reload
 ```
 
-Run the application:
+Swagger documentation will be available at
+
+```
+http://127.0.0.1:8000/docs
+```
+
+---
+
+## 🐳 Docker
+
+Run the complete application using Docker Compose.
 
 ```bash
-docker compose up
+docker compose up --build
 ```
 
-### Access the Application
+This launches:
 
-**Streamlit**
-
-```
-http://localhost:8501
-```
-
-**FastAPI Swagger Documentation**
-
-```
-http://localhost:8000/docs
-```
+- Streamlit frontend
+- FastAPI backend
 
 ---
 
-## 🔄 Application Workflow
+## 📊 Model Information
 
-```text
-User Uploads Image
-        │
-        ▼
- Streamlit Frontend
-        │
-        ▼
- FastAPI Backend
-        │
-        ▼
- PyTorch CNN Model
-        │
-        ▼
-Prediction + Confidence
-        │
-        ▼
- Display Results
-```
+- **Framework:** PyTorch
+- **Model:** Custom Convolutional Neural Network (CNN)
+- **Dataset:** AFHQ (Animal Faces HQ)
+- **Classes:**
+  - Cat
+  - Dog
+  - Wild
 
 ---
 
-## 📊 Sample Predictions
+## 📌 Deployment Notes
 
-| Image | Prediction | Confidence |
-|--------|------------|------------|
-| Dog | Dog | 99.91% |
-| Cat | Cat | 99.84% |
-| Wild Animal | Wild | 99.76% |
+The repository includes both a **Streamlit frontend** and a **FastAPI backend**.
 
----
+The live application is deployed on **Streamlit Community Cloud**, where predictions are performed using direct model inference.
 
-## 📸 Screenshots
+The FastAPI backend remains fully implemented and can be executed locally or through Docker. Interactive API documentation is available through Swagger UI.
 
-### Streamlit Interface
-
-> *(Add homepage screenshot here)*
+During deployment, the FastAPI service was initially tested on the Render free tier. However, the available **512 MB RAM** was insufficient to load the trained PyTorch model, resulting in memory-related startup failures. To provide a stable public demo, the deployed application uses direct inference while retaining the complete FastAPI implementation within the project.
 
 ---
 
-### Prediction Result
+## 🚀 Future Improvements
 
-> *(Add prediction screenshot here)*
-
----
-
-### FastAPI Swagger Documentation
-
-> *(Add Swagger UI screenshot here)*
-
----
-
-## 🔮 Future Improvements
-
-- Replace the custom CNN with ResNet or EfficientNet
-- Improve generalization using data augmentation
-- Deploy the application to the cloud
-- Add batch image prediction
-- Implement model monitoring and logging
-- Add CI/CD pipeline for automated deployment
+- Transfer Learning (ResNet / EfficientNet)
+- ONNX or TorchScript optimization
+- Batch image prediction
+- Grad-CAM visualizations
+- Additional animal classes
+- Cloud deployment of the FastAPI backend using a higher-memory hosting service
 
 ---
 
 ## 👨‍💻 Author
 
 **Rishit Mahindru**
-
-**GitHub:** https://github.com/yourusername
-
-**LinkedIn:** https://linkedin.com/in/yourprofile
-
----
-
-## ⭐ Support
-
-If you found this project helpful, consider giving it a ⭐ on GitHub!

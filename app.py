@@ -92,5 +92,5 @@ if uploaded_file is not None:
 st.divider()
 
 st.caption(
-    "Built with using PyTorch, Streamlit and FastAPI"
+    "Built with using PyTorch, Streamlit and Docker"
 )
